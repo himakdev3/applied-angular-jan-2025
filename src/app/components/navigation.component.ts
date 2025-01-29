@@ -72,5 +72,13 @@ export class NavigationComponent {
       href: 'golf',
       text: 'Golf',
     },
+    // {
+    //   href: 'chess',
+    //   text: 'Chess',
+    // },
+    {
+      href: 'counter',
+      text: 'Counter',
+    },
   ]);
 }
