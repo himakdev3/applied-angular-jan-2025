@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
     <div>
       Counter Stuff Goes Here
       <div class="flex gap-4">
-        <a class="link" routerLink="app-UiComponent">UI</a>
+        <a class="link" routerLink="app-ui">UI</a>
         <a class="link" routerLink="app-prefs">Preference</a>
       </div>
       <router-outlet />

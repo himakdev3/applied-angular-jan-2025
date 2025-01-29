@@ -3,10 +3,11 @@ import {
   ChangeDetectionStrategy,
   signal,
   computed,
+  inject,
 } from '@angular/core';
 
 @Component({
-  selector: 'app-UiComponent',
+  selector: 'app-ui',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   template: `
@@ -15,7 +16,7 @@ import {
       @if (btnFlag()) {
         <button (click)="decrement()" class="btn btn-primary">-</button>
       }
-      <span data-testid="current">{{ counter() }}</span>
+      <span>{{ counter() }}</span>
 
       <button (click)="increment()" class="btn btn-primary">+</button>
     </div>
@@ -23,8 +24,8 @@ import {
   styles: ``,
 })
 export class UiComponent {
+  //store = inject(SignalStore);
   counter = signal(0);
-
   btnFlag = computed(() => {
     if (this.counter() > 0) {
       return 'true';
@@ -39,7 +40,6 @@ export class UiComponent {
       this.counter.update((value) => value - 1);
     }
   }
-
   getFizzBuzz(): string {
     const value = this.counter();
     if (value === 0) {

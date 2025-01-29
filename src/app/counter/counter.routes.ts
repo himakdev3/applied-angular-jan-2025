@@ -9,7 +9,7 @@ export const COUNTER_ROUTES: Routes = [
     component: CounterComponent,
     children: [
       {
-        path: 'app-UiComponent',
+        path: 'app-ui',
         component: UiComponent,
       },
       {
