@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-navigationcomponent',
+  selector: 'app-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
   template: `
@@ -29,18 +29,22 @@ import { RouterLink } from '@angular/router';
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li><a routerLink="/">Home</a></li>
-
-            <li><a routerLink="resources">Resources</a></li>
+            @for (link of links(); track link.href) {
+              <li>
+                <a [routerLink]="[link.href]">{{ link.text }}</a>
+              </li>
+            }
           </ul>
         </div>
         <a class="btn btn-ghost text-xl">Applied Angular</a>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-          <li><a routerLink="/">Home</a></li>
-
-          <li><a routerLink="resources">Resources</a></li>
+          @for (link of links(); track link.href) {
+            <li>
+              <a [routerLink]="[link.href]">{{ link.text }}</a>
+            </li>
+          }
         </ul>
       </div>
       <div class="navbar-end">
@@ -50,4 +54,23 @@ import { RouterLink } from '@angular/router';
   `,
   styles: ``,
 })
-export class NavigationComponent {}
+export class NavigationComponent {
+  links = signal([
+    {
+      href: '',
+      text: 'Home',
+    },
+    {
+      href: 'resources',
+      text: 'Resources',
+    },
+    {
+      href: 'demos',
+      text: 'Demos',
+    },
+    {
+      href: 'golf',
+      text: 'Golf',
+    },
+  ]);
+}
